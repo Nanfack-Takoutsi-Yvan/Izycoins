@@ -6,7 +6,7 @@ require("dotenv").config({
 })
 
 const strapiConfig = {
-  apiURL: process.env.STRAPI_API_URL,
+  apiURL: process.env.GATSBY_STRAPI_API_URL,
   accessToken: process.env.STRAPI_TOKEN,
   singleTypes: [],
   collectionTypes: [
@@ -44,9 +44,25 @@ const config: GatsbyConfig = {
     "gatsby-plugin-tsconfig-paths",
     "gatsby-transformer-sharp",
     "gatsby-transformer-sharp",
+    "gatsby-plugin-layout",
     {
       resolve: `gatsby-source-strapi`,
       options: strapiConfig,
+    },
+    {
+      resolve: `gatsby-plugin-alias-imports`,
+      options: {
+        alias: {
+          "@src": "src",
+          "@components": "src/components",
+          "@layouts": "src/layouts",
+          "@pages": "src/pages",
+          "@sass": "src/sass",
+          "@templates": "src/templates",
+          "@hooks": "src/hooks",
+        },
+        extensions: ["js", "ts", "tsx", "jsx"],
+      },
     },
   ],
 }
