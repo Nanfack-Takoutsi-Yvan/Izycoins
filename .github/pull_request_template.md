@@ -18,14 +18,14 @@ Fixes #(issue)
 Please describe the tests that you ran to verify your changes. Provide instructions so we can reproduce. Please also list any relevant details for your test configuration
 
 - [ ] Manual test
-- [ ] Snap shot tests
+- [ ] Snapshot tests
 - [ ] Unit tests
 - [ ] Test D
 
 **Test Configuration**:
 
-- Node version:
-- Gatsby version:
+- Node version: 18.14.0
+- Gatsby version: ^5.7.0
 - Browser:
 - OS:
 
