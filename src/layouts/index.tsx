@@ -16,6 +16,9 @@ import { PageDataType } from "@services/typings/shared"
 import { LanguageEnum, LanguageType } from "@services/constants/_index"
 import customHooks from "@hooks/index"
 import { pathToPageName } from "@utils/methods"
+import "./index.css"
+import { ThemeProvider } from "@emotion/react"
+import Theme from "@utils/theme"
 
 export const AppStateContext = createContext<AppContextProps>({
   pageData: {} as PageDataType,
@@ -98,8 +101,6 @@ const DynamicLayout: FC<PageProps> = ({ location }) => {
     // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
     transformStrapiData(strapiData)[pathToPageName(pathName)][localLanguage!]
 
-  console.log(allTexts)
-
   useEffect(() => {
     setLanguages(strapiLanguages)
   }, [strapiLanguages])
@@ -120,14 +121,16 @@ const DynamicLayout: FC<PageProps> = ({ location }) => {
         setAuthUser,
       }}
     >
-      <Router basepath="/">
-        <LandingPage path="/" />
-        <PrivateRoute
-          path="/dasboard"
-          component={Default}
-          location={location}
-        />
-      </Router>
+      <ThemeProvider theme={Theme}>
+        <Router basepath="/">
+          <LandingPage path="/" />
+          <PrivateRoute
+            path="/dasboard"
+            component={Default}
+            location={location}
+          />
+        </Router>
+      </ThemeProvider>
     </AppStateContext.Provider>
   )
 }
